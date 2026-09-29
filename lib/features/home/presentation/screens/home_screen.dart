@@ -84,7 +84,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                 ),
                 Text(
-                  AppConstants.companyAddress,
+                  AppConstants.companyNameEn,
                   style: AppTypography.caption.copyWith(
                     color: isDark ? Colors.white60 : AppColors.textSecondaryLight,
                   ),
