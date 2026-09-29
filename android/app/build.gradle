@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.aljawad.services"
-    compileSdkVersion 34
+    compileSdkVersion 36
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -44,7 +44,7 @@ android {
         // Can be changed prior to Google Play publishing as documented in README
         applicationId "com.aljawad.services"
         minSdkVersion 26
-        targetSdkVersion 34
+        targetSdkVersion 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
