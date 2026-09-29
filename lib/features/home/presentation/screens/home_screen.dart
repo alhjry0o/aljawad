@@ -49,7 +49,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               width: 38,
               height: 38,
               decoration: BoxDecoration(
-                color: isDark ? AppColors.surfaceDark : AppColors.primaryNavy,
+                color: isDark
+                    ? AppColors.surfaceDark
+                    : AppColors.primaryNavy,
                 borderRadius: AppRadius.roundedMd,
                 border: Border.all(
                   color: AppColors.accentGreen.withOpacity(0.5),
@@ -60,7 +62,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: Image.asset(
                 AppAssets.logo,
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) => const Center(
+                errorBuilder: (context, error, stackTrace) =>
+                    const Center(
                   child: Text(
                     'جـ',
                     style: TextStyle(
@@ -86,7 +89,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 Text(
                   AppConstants.companyNameEn,
                   style: AppTypography.caption.copyWith(
-                    color: isDark ? Colors.white60 : AppColors.textSecondaryLight,
+                    color: isDark
+                        ? Colors.white60
+                        : AppColors.textSecondaryLight,
                   ),
                 ),
               ],
@@ -95,9 +100,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.phone_in_talk_rounded, color: AppColors.accentGreen),
+            icon: const Icon(
+              Icons.phone_in_talk_rounded,
+              color: AppColors.accentGreen,
+            ),
             tooltip: 'اتصال مباشر',
-            onPressed: () => launchUrl(Uri.parse('tel:${AppConstants.phoneUnified}')),
+            onPressed: () => launchUrl(
+              Uri.parse('tel:${AppConstants.phoneUnified}'),
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.info_outline_rounded),
@@ -111,7 +121,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         onTap: _onBottomNavTapped,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.accentGreen,
-        unselectedItemColor: isDark ? Colors.white60 : Colors.black45,
+        unselectedItemColor:
+            isDark ? Colors.white60 : Colors.black45,
         selectedLabelStyle: AppTypography.labelSmall,
         unselectedLabelStyle: AppTypography.caption,
         items: const [
@@ -138,11 +149,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 13. HERO SECTION - Single large, premium Hero Container
+            // HERO SECTION
             _buildHeroContainer(context, isDark),
 
             const SizedBox(height: AppSpacing.lg),
@@ -161,7 +175,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text('عرض الكل'),
-                      Icon(Icons.chevron_left_rounded, size: 18),
+                      Icon(
+                        Icons.chevron_left_rounded,
+                        size: 18,
+                      ),
                     ],
                   ),
                 ),
@@ -175,19 +192,27 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: services.take(4).length,
-              separatorBuilder: (_, __) => const SizedBox(height: 10),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final srv = services[index];
+
                 return InkWell(
-                  onTap: () => context.push('/service/${srv.id}'),
+                  onTap: () => context.push(
+                    '/service/${srv.id}',
+                  ),
                   borderRadius: AppRadius.roundedLg,
                   child: Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: isDark ? AppColors.cardDark : AppColors.cardLight,
+                      color: isDark
+                          ? AppColors.cardDark
+                          : AppColors.cardLight,
                       borderRadius: AppRadius.roundedLg,
                       border: Border.all(
-                        color: isDark ? AppColors.borderDark : AppColors.borderLight,
+                        color: isDark
+                            ? AppColors.borderDark
+                            : AppColors.borderLight,
                       ),
                     ),
                     child: Row(
@@ -196,7 +221,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           width: 44,
                           height: 44,
                           decoration: BoxDecoration(
-                            color: AppColors.accentGreen.withOpacity(0.12),
+                            color: AppColors.accentGreen
+                                .withOpacity(0.12),
                             borderRadius: AppRadius.roundedMd,
                           ),
                           child: const Icon(
@@ -208,7 +234,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment:
+                                CrossAxisAlignment.start,
                             children: [
                               Text(
                                 srv.title,
@@ -219,7 +246,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                 srv.shortDescription,
                                 style: AppTypography.caption,
                                 maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
+                                overflow:
+                                    TextOverflow.ellipsis,
                               ),
                             ],
                           ),
@@ -243,24 +271,38 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: isDark
-                      ? [AppColors.surfaceDark, AppColors.primaryNavyDark]
-                      : [const Color(0xFFE8F5E9), const Color(0xFFC8E6C9)],
+                      ? [
+                          AppColors.surfaceDark,
+                          AppColors.primaryNavyDark,
+                        ]
+                      : [
+                          const Color(0xFFE8F5E9),
+                          const Color(0xFFC8E6C9),
+                        ],
                 ),
                 borderRadius: AppRadius.roundedLg,
                 border: Border.all(
-                  color: AppColors.accentGreen.withOpacity(0.3),
+                  color:
+                      AppColors.accentGreen.withOpacity(0.3),
                 ),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
                 children: [
                   Row(
                     children: [
-                      const Icon(Icons.verified_rounded, color: AppColors.accentGreen, size: 20),
+                      const Icon(
+                        Icons.verified_rounded,
+                        color: AppColors.accentGreen,
+                        size: 20,
+                      ),
                       const SizedBox(width: 6),
                       Text(
                         'خدمة المعاينة الميدانية المجانية',
-                        style: AppTypography.labelLarge.copyWith(color: AppColors.accentGreen),
+                        style: AppTypography.labelLarge.copyWith(
+                          color: AppColors.accentGreen,
+                        ),
                       ),
                     ],
                   ),
@@ -276,7 +318,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
-                    onPressed: () => context.push('/inspection-request'),
+                    onPressed: () =>
+                        context.push('/inspection-request'),
                     child: const Text('طلب معاينة فورية'),
                   ),
                 ],
@@ -285,7 +328,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             const SizedBox(height: AppSpacing.lg),
 
-            // Why Aljawad (لماذا الجواد؟)
+            // Why Aljawad
             Text(
               'لماذا الجواد؟',
               style: AppTypography.headlineLarge,
@@ -297,15 +340,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             // Featured Projects
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start,
                   children: [
-                    Text('مشاريعنا المنفذة', style: AppTypography.headlineLarge),
+                    Text(
+                      'مشاريعنا المنفذة',
+                      style: AppTypography.headlineLarge,
+                    ),
                     Text(
                       AppConstants.completedProjectsCount,
-                      style: AppTypography.caption.copyWith(
+                      style:
+                          AppTypography.caption.copyWith(
                         color: AppColors.accentGreen,
                         fontWeight: FontWeight.bold,
                       ),
@@ -313,18 +362,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
                 TextButton(
-                  onPressed: () => context.push('/projects'),
+                  onPressed: () =>
+                      context.push('/projects'),
                   child: const Text('عرض المزيد'),
                 ),
               ],
             ),
+
             const SizedBox(height: AppSpacing.sm),
+
+            // Featured Projects Preview
             ...projects.take(2).map(
               (proj) => Card(
-                margin: const EdgeInsets.only(bottom: 12),
+                margin:
+                    const EdgeInsets.only(bottom: 12),
                 clipBehavior: Clip.antiAlias,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment:
+                      CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 180,
@@ -332,51 +387,65 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       child: Image.asset(
                         proj.imageAsset,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) => Container(
-                          color: isDark
-                              ? AppColors.surfaceDark
-                              : AppColors.surfaceLight,
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Icon(
-                                Icons.apartment_rounded,
-                                size: 40,
-                                color: AppColors.accentGreen,
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                proj.serviceType,
-                                style: AppTypography.caption.copyWith(
-                                  fontWeight: FontWeight.bold,
+                        errorBuilder:
+                            (context, error, stackTrace) {
+                          return Container(
+                            color: isDark
+                                ? AppColors.surfaceDark
+                                : AppColors.surfaceLight,
+                            alignment: Alignment.center,
+                            child: Column(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                              children: [
+                                const Icon(
+                                  Icons.apartment_rounded,
+                                  size: 40,
+                                  color:
+                                      AppColors.accentGreen,
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  proj.serviceType,
+                                  style: AppTypography
+                                      .caption
+                                      .copyWith(
+                                    fontWeight:
+                                        FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(12),
+                      padding:
+                          const EdgeInsets.all(12),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
                         children: [
                           Text(
                             proj.title,
-                            style: AppTypography.labelLarge,
+                            style:
+                                AppTypography.labelLarge,
                           ),
                           const SizedBox(height: 4),
                           Text(
                             proj.location,
-                            style: AppTypography.caption,
+                            style:
+                                AppTypography.caption,
                           ),
                           const SizedBox(height: 4),
                           Text(
                             proj.shortDescription,
-                            style: AppTypography.bodyMedium,
+                            style:
+                                AppTypography.bodyMedium,
                             maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
+                            overflow:
+                                TextOverflow.ellipsis,
                           ),
                         ],
                       ),
@@ -390,13 +459,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
     );
   }
-          ],
-        ),
-      ),
-    );
-  }
 
-  Widget _buildHeroContainer(BuildContext context, bool isDark) {
+  Widget _buildHeroContainer(
+    BuildContext context,
+    bool isDark,
+  ) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryNavyDark,
@@ -413,12 +480,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               child: Image.asset(
                 AppAssets.homeHero,
                 fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => const SizedBox(),
+                errorBuilder:
+                    (context, error, stackTrace) =>
+                        const SizedBox(),
               ),
             ),
           ),
 
-          // Multi-stage Dark Gradient Overlay ensuring 100% text readability
+          // Dark Gradient Overlay
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(
@@ -427,21 +496,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    AppColors.primaryNavy.withOpacity(0.85),
-                    AppColors.primaryNavyDark.withOpacity(0.96),
+                    AppColors.primaryNavy
+                        .withOpacity(0.85),
+                    AppColors.primaryNavyDark
+                        .withOpacity(0.96),
                   ],
                 ),
               ),
             ),
           ),
 
-          // Content
+          // Hero Content
           Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment:
+                  CrossAxisAlignment.start,
               children: [
-                // Headline
                 Text(
                   AppConstants.mainHeadline,
                   style: AppTypography.displayMedium.copyWith(
@@ -458,63 +529,103 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // 15. Search Bar inside Hero Card
+                // Search Bar
                 TextField(
                   controller: _searchController,
                   onSubmitted: (query) {
                     if (query.isNotEmpty) {
-                      context.push('/services?query=$query');
+                      context.push(
+                        '/services?query=$query',
+                      );
                     }
                   },
-                  style: const TextStyle(color: Colors.white, fontSize: 14),
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                  ),
                   decoration: InputDecoration(
                     hintText: 'ماذا تحتاج؟',
-                    hintStyle: const TextStyle(color: Colors.white54, fontSize: 13),
-                    prefixIcon: const Icon(Icons.search, color: AppColors.accentGreen),
+                    hintStyle: const TextStyle(
+                      color: Colors.white54,
+                      fontSize: 13,
+                    ),
+                    prefixIcon: const Icon(
+                      Icons.search,
+                      color: AppColors.accentGreen,
+                    ),
                     filled: true,
                     fillColor: Colors.black26,
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    contentPadding:
+                        const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 12,
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: AppRadius.roundedMd,
-                      borderSide: const BorderSide(color: Colors.white24),
+                      borderSide: const BorderSide(
+                        color: Colors.white24,
+                      ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: AppRadius.roundedMd,
-                      borderSide: const BorderSide(color: Colors.white24),
+                      borderSide: const BorderSide(
+                        color: Colors.white24,
+                      ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: AppRadius.roundedMd,
-                      borderSide: const BorderSide(color: AppColors.accentGreen, width: 1.5),
+                      borderSide: const BorderSide(
+                        color: AppColors.accentGreen,
+                        width: 1.5,
+                      ),
                     ),
                   ),
                 ),
 
                 const SizedBox(height: 14),
 
-                // 16. Two Hero Buttons inside the same Container
+                // Hero Buttons
                 Row(
                   children: [
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: () => context.push('/service-request'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.accentGreen,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                        onPressed: () => context.push(
+                          '/service-request',
                         ),
-                        child: const Text('اطلب خدمة'),
+                        style:
+                            ElevatedButton.styleFrom(
+                          backgroundColor:
+                              AppColors.accentGreen,
+                          foregroundColor: Colors.white,
+                          padding:
+                              const EdgeInsets.symmetric(
+                            vertical: 14,
+                          ),
+                        ),
+                        child:
+                            const Text('اطلب خدمة'),
                       ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
                       child: OutlinedButton(
-                        onPressed: () => context.push('/quotation-request'),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white60),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                        onPressed: () => context.push(
+                          '/quotation-request',
                         ),
-                        child: const Text('طلب عرض سعر'),
+                        style:
+                            OutlinedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          side: const BorderSide(
+                            color: Colors.white60,
+                          ),
+                          padding:
+                              const EdgeInsets.symmetric(
+                            vertical: 14,
+                          ),
+                        ),
+                        child: const Text(
+                          'طلب عرض سعر',
+                        ),
                       ),
                     ),
                   ],
@@ -529,16 +640,30 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
   Widget _buildWhyPillars(bool isDark) {
     final pillars = [
-      {'title': 'فرق متخصصة', 'desc': 'كوادر مؤهلة ومدربة بمعايير سلامة صارمة.'},
-      {'title': 'حلول متكاملة', 'desc': 'خدمات تشغيل وصيانة شاملة تحت سقف واحد.'},
-      {'title': 'معدات حديثة', 'desc': 'أحدث الرافعات وآليات النظافة الصناعية.'},
-      {'title': 'خبرة كبرى', 'desc': 'إنجاز مئات المشاريع للشركات والمنشآت.'},
+      {
+        'title': 'فرق متخصصة',
+        'desc': 'كوادر مؤهلة ومدربة بمعايير سلامة صارمة.',
+      },
+      {
+        'title': 'حلول متكاملة',
+        'desc': 'خدمات تشغيل وصيانة شاملة تحت سقف واحد.',
+      },
+      {
+        'title': 'معدات حديثة',
+        'desc': 'أحدث الرافعات وآليات النظافة الصناعية.',
+      },
+      {
+        'title': 'خبرة كبرى',
+        'desc': 'إنجاز مئات المشاريع للشركات والمنشآت.',
+      },
     ];
 
     return GridView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      physics:
+          const NeverScrollableScrollPhysics(),
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 1.6,
         crossAxisSpacing: 10,
@@ -547,22 +672,32 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       itemCount: pillars.length,
       itemBuilder: (context, index) {
         final p = pillars[index];
+
         return Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: isDark ? AppColors.cardDark : AppColors.cardLight,
+            color: isDark
+                ? AppColors.cardDark
+                : AppColors.cardLight,
             borderRadius: AppRadius.roundedMd,
             border: Border.all(
-              color: isDark ? AppColors.borderDark : AppColors.borderLight,
+              color: isDark
+                  ? AppColors.borderDark
+                  : AppColors.borderLight,
             ),
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment:
+                CrossAxisAlignment.start,
+            mainAxisAlignment:
+                MainAxisAlignment.center,
             children: [
               Text(
                 p['title']!,
-                style: AppTypography.labelLarge.copyWith(color: AppColors.accentGreen),
+                style:
+                    AppTypography.labelLarge.copyWith(
+                  color: AppColors.accentGreen,
+                ),
               ),
               const SizedBox(height: 2),
               Text(
