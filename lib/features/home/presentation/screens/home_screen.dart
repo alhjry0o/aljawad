@@ -319,22 +319,77 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ],
             ),
             const SizedBox(height: AppSpacing.sm),
-            ...projects.take(2).map((proj) => Card(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(proj.title, style: AppTypography.labelLarge),
-                        const SizedBox(height: 4),
-                        Text(proj.location, style: AppTypography.caption),
-                        const SizedBox(height: 4),
-                        Text(proj.shortDescription, style: AppTypography.bodyMedium),
-                      ],
+            ...projects.take(2).map(
+              (proj) => Card(
+                margin: const EdgeInsets.only(bottom: 12),
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 180,
+                      width: double.infinity,
+                      child: Image.asset(
+                        proj.imageAsset,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) => Container(
+                          color: isDark
+                              ? AppColors.surfaceDark
+                              : AppColors.surfaceLight,
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.apartment_rounded,
+                                size: 40,
+                                color: AppColors.accentGreen,
+                              ),
+                              const SizedBox(height: 6),
+                              Text(
+                                proj.serviceType,
+                                style: AppTypography.caption.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                )),
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            proj.title,
+                            style: AppTypography.labelLarge,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            proj.location,
+                            style: AppTypography.caption,
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            proj.shortDescription,
+                            style: AppTypography.bodyMedium,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
           ],
         ),
       ),
