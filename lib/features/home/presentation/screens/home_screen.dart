@@ -297,7 +297,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
             // Featured Projects
             Row(
-              mainAxisAlignment: MainAxisAlignment.between,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
