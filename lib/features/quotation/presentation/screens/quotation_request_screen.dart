@@ -135,9 +135,12 @@ class _QuotationRequestScreenState extends ConsumerState<QuotationRequestScreen>
             DropdownButtonFormField<ServiceModel>(
               value: _selectedService,
               decoration: const InputDecoration(labelText: 'الخدمة المراد تسعيرها'),
-              items: services.map((s) {
-                return DropdownMenuItem(value: s, child: Text(s.title));
-              }).toList>,
+              items: services.map<DropdownMenuItem<ServiceModel>>((ServiceModel s) {
+                return DropdownMenuItem<ServiceModel>(
+                  value: s,
+                    child: Text(s.title),
+                );
+              }).toList(),
               onChanged: (val) => setState(() => _selectedService = val),
             ),
             const SizedBox(height: 16),
