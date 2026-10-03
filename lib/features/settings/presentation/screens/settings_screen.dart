@@ -31,35 +31,19 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
 
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.info_outline,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('عن شركة الجواد'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.info_outline,
+            title: 'عن شركة الجواد',
             onTap: () => context.push('/about'),
           ),
 
-          const SizedBox(height: 6),
-
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.phone_outlined,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('تواصل معنا'),
-            trailing: const Icon(Icons.arrow_forward_ios, size: 14),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.phone_outlined,
+            title: 'تواصل معنا',
             onTap: () => context.push('/contact'),
           ),
 
@@ -74,24 +58,16 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 8),
 
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.palette_outlined,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('مظهر التطبيق'),
-            subtitle: Text(
-              currentThemeMode == ThemeMode.light
-                  ? 'فاتح'
-                  : currentThemeMode == ThemeMode.dark
-                      ? 'داكن'
-                      : 'حسب نظام الجهاز',
-            ),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.palette_outlined,
+            title: 'مظهر التطبيق',
+            subtitle: currentThemeMode == ThemeMode.light
+                ? 'فاتح'
+                : currentThemeMode == ThemeMode.dark
+                    ? 'داكن'
+                    : 'حسب نظام الجهاز',
             trailing: DropdownButton<ThemeMode>(
               value: currentThemeMode,
               underline: const SizedBox(),
@@ -111,30 +87,18 @@ class SettingsScreen extends ConsumerWidget {
               ],
               onChanged: (mode) {
                 if (mode != null) {
-                  ref
-                      .read(themeModeProvider.notifier)
-                      .setThemeMode(mode);
+                  ref.read(themeModeProvider.notifier).setThemeMode(mode);
                 }
               },
             ),
           ),
 
-          const SizedBox(height: 6),
-
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.language_rounded,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('لغة التطبيق'),
-            subtitle: const Text(
-              'العربية (جاهز لإضافة English لاحقاً)',
-            ),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.language_rounded,
+            title: 'لغة التطبيق',
+            subtitle: 'العربية (جاهز لإضافة English لاحقاً)',
           ),
 
           const SizedBox(height: 20),
@@ -149,24 +113,12 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 8),
 
           // Privacy Policy
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.privacy_tip_outlined,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('سياسة الخصوصية'),
-            subtitle: const Text(
-              'معلومات حول بيانات العملاء وطلبات الخدمات',
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              size: 14,
-            ),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.privacy_tip_outlined,
+            title: 'سياسة الخصوصية',
+            subtitle: 'معلومات حول بيانات العملاء وطلبات الخدمات',
             onTap: () {
               showDialog(
                 context: context,
@@ -218,27 +170,13 @@ class SettingsScreen extends ConsumerWidget {
             },
           ),
 
-          const SizedBox(height: 6),
-
           // App Information
-          ListTile(
-            shape: RoundedRectangleBorder(
-              borderRadius: AppRadius.roundedMd,
-            ),
-            tileColor:
-                isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
-            leading: const Icon(
-              Icons.info_outline_rounded,
-              color: AppColors.accentGreen,
-            ),
-            title: const Text('معلومات التطبيق'),
-            subtitle: const Text(
-              'الإصدار والمنصة وحالة النسخة',
-            ),
-            trailing: const Icon(
-              Icons.arrow_forward_ios,
-              size: 14,
-            ),
+          _buildSettingsTile(
+            context: context,
+            isDark: isDark,
+            icon: Icons.info_outline_rounded,
+            title: 'معلومات التطبيق',
+            subtitle: 'الإصدار والمنصة وحالة النسخة',
             onTap: () {
               showDialog(
                 context: context,
@@ -288,9 +226,7 @@ class SettingsScreen extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   'جميع الحقوق محفوظة',
-                  style: AppTypography.caption.copyWith(
-                    fontSize: 10,
-                  ),
+                  style: AppTypography.caption.copyWith(fontSize: 10),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 12),
@@ -318,6 +254,70 @@ class SettingsScreen extends ConsumerWidget {
 
           const SizedBox(height: 16),
         ],
+      ),
+    );
+  }
+
+  // دالة بناء البطاقة المخصصة (لحل مشكلة ثبات الخلفية)
+  Widget _buildSettingsTile({
+    required BuildContext context,
+    required bool isDark,
+    required IconData icon,
+    required String title,
+    String? subtitle,
+    Widget? trailing,
+    VoidCallback? onTap,
+  }) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      decoration: BoxDecoration(
+        color: isDark ? AppColors.surfaceDark : AppColors.surfaceLight,
+        borderRadius: AppRadius.roundedMd,
+        border: Border.all(
+          color: isDark ? AppColors.borderDark : AppColors.borderLight,
+        ),
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: AppRadius.roundedMd,
+          onTap: onTap,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+            child: Row(
+              children: [
+                Icon(icon, color: AppColors.accentGreen, size: 24),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(title, style: AppTypography.labelLarge),
+                      if (subtitle != null) ...[
+                        const SizedBox(height: 4),
+                        Text(
+                          subtitle,
+                          style: AppTypography.caption.copyWith(
+                            color: isDark ? Colors.white60 : Colors.black54,
+                          ),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                if (trailing != null)
+                  trailing
+                else if (onTap != null)
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 14,
+                    color: AppColors.textMutedLight,
+                  ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
