@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'main_shell.dart'; // استيراد الملف الجديد
+
+// استيراد الشاشات
 import '../../features/splash/presentation/screens/splash_screen.dart';
 import '../../features/home/presentation/screens/home_screen.dart';
 import '../../features/services/presentation/screens/services_screen.dart';
@@ -26,16 +29,68 @@ class AppRouter {
         name: 'splash',
         builder: (context, state) => const SplashScreen(),
       ),
-      GoRoute(
-        path: '/',
-        name: 'home',
-        builder: (context, state) => const HomeScreen(),
+
+      // ======== الحاوية الرئيسية التي تحتوي على الشريط السفلي ========
+      StatefulShellRoute.indexedStack(
+        builder: (context, state, navigationShell) {
+          return MainShell(navigationShell: navigationShell);
+        },
+        branches: [
+          // الفرع الأول: الرئيسية
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/',
+                name: 'home',
+                builder: (context, state) => const HomeScreen(),
+              ),
+            ],
+          ),
+          // الفرع الثاني: الخدمات
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/services',
+                name: 'services',
+                builder: (context, state) => const ServicesScreen(),
+              ),
+            ],
+          ),
+          // الفرع الثالث: طلباتي
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/requests',
+                name: 'requests',
+                builder: (context, state) => const MyRequestsScreen(),
+              ),
+            ],
+          ),
+          // الفرع الرابع: مشاريعنا
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/projects',
+                name: 'projects',
+                builder: (context, state) => const ProjectsScreen(),
+              ),
+            ],
+          ),
+          // الفرع الخامس: المزيد (الإعدادات)
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/settings',
+                name: 'settings',
+                builder: (context, state) => const SettingsScreen(),
+              ),
+            ],
+          ),
+        ],
       ),
-      GoRoute(
-        path: '/services',
-        name: 'services',
-        builder: (context, state) => const ServicesScreen(),
-      ),
+      // ==============================================================
+
+      // الشاشات الفرعية (تظهر فوق الشريط وتخفيه بشكل طبيعي)
       GoRoute(
         path: '/service/:id',
         name: 'service_detail',
@@ -69,16 +124,6 @@ class AppRouter {
         },
       ),
       GoRoute(
-        path: '/requests',
-        name: 'requests',
-        builder: (context, state) => const MyRequestsScreen(),
-      ),
-      GoRoute(
-        path: '/projects',
-        name: 'projects',
-        builder: (context, state) => const ProjectsScreen(),
-      ),
-      GoRoute(
         path: '/contact',
         name: 'contact',
         builder: (context, state) => const ContactScreen(),
@@ -87,11 +132,6 @@ class AppRouter {
         path: '/about',
         name: 'about',
         builder: (context, state) => const AboutScreen(),
-      ),
-      GoRoute(
-        path: '/settings',
-        name: 'settings',
-        builder: (context, state) => const SettingsScreen(),
       ),
       GoRoute(
         path: '/developer',
